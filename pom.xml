@@ -15,20 +15,41 @@
 
         <telegrambots.version>6.9.7.1</telegrambots.version>
         <discord4j.version>3.2.6</discord4j.version>
+		<commons-codec.version>1.16.1</commons-codec.version>
+		<reactor-netty-http.version>1.1.18</reactor-netty-http.version>
+		<jackson-databind.version>2.17.0</jackson-databind.version>
     </properties>
 
     <dependencies>
-        <!-- FIXME Тут есть уязвимость в транзитивной библиотеке, надо поправить (доп. задание) -->
         <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots</artifactId>
         </dependency>
 
-        <!-- FIXME В некоторых транзитивных библиотеках есть уязвимость, надо поправить (доп. задание) -->
         <dependency>
             <groupId>com.discord4j</groupId>
             <artifactId>discord4j-core</artifactId>
         </dependency>
+
+		<!-- Комментарий для задания: явное определение нужной версией для транзитивной зависимости -->
+		<!-- с уязвимостью позволяет устранить уязвимость для библиотеки telegrambots -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+
+		<!-- Комментарий для задания: явное определение нужной версией для транзитивных зависимостей -->
+		<!-- с уязвимостью позволяет устранить уязвимости для библиотеки discord4j-core -->
+		<dependency>
+			<groupId>io.projectreactor.netty</groupId>
+			<artifactId>reactor-netty-http</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -44,6 +65,24 @@
                 <artifactId>discord4j-core</artifactId>
                 <version>${discord4j.version}</version>
             </dependency>
+
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons-codec.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.projectreactor.netty</groupId>
+				<artifactId>reactor-netty-http</artifactId>
+				<version>${reactor-netty-http.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson-databind.version}</version>
+			</dependency>
 
         </dependencies>
     </dependencyManagement>
