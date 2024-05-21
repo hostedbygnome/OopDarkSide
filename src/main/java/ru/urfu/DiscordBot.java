@@ -13,12 +13,13 @@ import discord4j.core.object.entity.channel.MessageChannel;
 public class DiscordBot {
 
     private final String token;
-    private MessageHandler echoMessageHandler = new EchoMessageHandler();
+    private final EchoMessageHandler echoMessageHandler;
 
     private GatewayDiscordClient client;
 
-    public DiscordBot(String token) {
+    public DiscordBot(String token, EchoMessageHandler echoMessageHandler) {
         this.token = token;
+        this.echoMessageHandler = echoMessageHandler;
     }
 
     public void start() {

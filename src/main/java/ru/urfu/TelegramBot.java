@@ -13,11 +13,12 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
  */
 public class TelegramBot extends TelegramLongPollingBot {
     private final String telegramBotName;
-    private MessageHandler echoMessageHandler = new EchoMessageHandler();
+    private final EchoMessageHandler echoMessageHandler;
 
-    public TelegramBot(String telegramBotName, String token) {
+    public TelegramBot(String telegramBotName, String token, EchoMessageHandler echoMessageHandler) {
         super(token);
         this.telegramBotName = telegramBotName;
+        this.echoMessageHandler = echoMessageHandler;
     }
 
     public void start() {
