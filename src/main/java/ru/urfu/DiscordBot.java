@@ -13,11 +13,13 @@ import discord4j.core.object.entity.channel.MessageChannel;
 public class DiscordBot {
 
     private final String token;
+    private final EchoMessageHandler echoMessageHandler;
 
     private GatewayDiscordClient client;
 
-    public DiscordBot(String token) {
+    public DiscordBot(String token, EchoMessageHandler echoMessageHandler) {
         this.token = token;
+        this.echoMessageHandler = echoMessageHandler;
     }
 
     public void start() {
@@ -34,7 +36,8 @@ public class DiscordBot {
                     if (eventMessage.getAuthor().map(user -> !user.isBot()).orElse(false)) {
                         String chanelID = eventMessage.getChannelId().asString();
                         String messageFromUser = eventMessage.getContent();
-                        // TODO
+                        String resultMessage = echoMessageHandler.handleMessage(messageFromUser);
+                        sendMessage(chanelID, resultMessage);
                     }
                 });
         System.out.println("Discord бот запущен");
